@@ -7,9 +7,9 @@
 
 #define VERSION "1.0"
 
-float si_stagger_time[32];
-float g_vStart[32][3];
-Handle si_timer[32];
+float si_stagger_time[33];
+float g_vStart[33][3];
+Handle si_timer[33];
 
 bool flag;
 
