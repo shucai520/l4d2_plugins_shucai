@@ -1,0 +1,37 @@
+"Games"
+{
+	"left4dead2"
+	{
+		"MemPatches"
+		{
+			"CTerrorWeapon::CanDeployFor::Patch"
+			{
+				"signature" "CTerrorWeapon::CanDeployFor"
+				"linux"
+				{
+					"offset"	"2Ah"
+					"verify"	"\xE8\x71\x63\xF8\xFF\x84"
+					"patch"		"\x90\x90\x90\x90\x90\x30"
+				}
+				"windows"
+				{
+					"offset"	"38h"
+					"verify"	"\xE8\x13\xAC\xED\xFF\x84"
+					"patch"		"\x90\x90\x90\x90\x90\x30"
+				}
+			}
+		}
+
+		"Signatures"
+		{
+			/* l4d2_ladderrambos.txt */
+			"CTerrorWeapon::CanDeployFor"
+			{
+				"library"	"server"
+				"linux"		"@_ZN13CTerrorWeapon12CanDeployForEP13CTerrorPlayer"
+				"windows"	"\x2A\x2A\x2A\x2A\x2A\x2A\x2A\x57\x8B\xF9\x85\xF6\x0F\x84\x2A\x2A\x2A\x2A\x8B\x06\x8B\x90\xE4\x07\x00\x00"
+						/* ? ? ? ? ? ? ? 57 8B F9 85 F6 0F 84 ? ? ? ? 8B 06 8B 90 E4 07 00 00 */
+			}
+		}
+	}
+}
