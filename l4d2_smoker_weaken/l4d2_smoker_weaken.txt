@@ -1,0 +1,63 @@
+"Games"
+{
+	"left4dead2"
+	{
+		"MemPatches"
+		{
+			"MP::CTerrorMeleeWeapon::TestMeleeSwingCollision"
+			{
+				"signature" "CTerrorMeleeWeapon::TestMeleeSwingCollision"
+				"linux"
+				{
+					"offset"	"69Bh"
+					"verify"	"\x0F\x85\xE7\x05\x00\x00"
+					"patch"		"\xE9\xE8\x05\x00\x00\x90"
+				}
+
+				"windows"
+				{
+					"offset"	"3F7h"
+					"verify"	"\x74\x65"
+					"patch"		"\x90\x90"
+				}
+			}
+
+			"MP::CTerrorMeleeWeapon::SecondaryAttack"
+			{
+				"signature" "CTerrorMeleeWeapon::SecondaryAttack"
+				"linux"
+				{
+					"offset"	"38h"
+					"verify"	"\x74"
+					"patch"		"\xEB"
+				}
+
+				"windows"
+				{
+					"offset"	"30h"
+					"verify"	"\x0F\x85\xAA\x00\x00\x00"
+					"patch"		"\x90\x90\x90\x90\x90\x90"
+				}
+			}
+		}
+
+		"Signatures"
+		{
+			"CTerrorMeleeWeapon::TestMeleeSwingCollision"
+			{
+				"library"	"server"
+				"linux"		"@_ZN18CTerrorMeleeWeapon23TestMeleeSwingCollisionERK6Vector"
+				"windows"	"\x2A\x2A\x2A\x2A\x2A\x2A\x83\x2A\x2A\x83\x2A\x2A\x55\x8B\x2A\x2A\x89\x2A\x2A\x2A\x8B\x2A\x81\xEC\x2A\x2A\x2A\x2A\xA1\x2A\x2A\x2A\x2A\x33\x2A\x89\x2A\x2A\x56\x8B\x2A\x2A\x57\x89\x2A\x2A\xE8"
+						/* ? ? ? ? ? ? 83 ? ? 83 ? ? 55 8B ? ? 89 ? ? ? 8B ? 81 EC ? ? ? ? A1 ? ? ? ? 33 ? 89 ? ? 56 8B ? ? 57 89 ? ? E8 */
+			}
+
+			"CTerrorMeleeWeapon::SecondaryAttack"
+			{
+				"library"		"server"
+				"linux"			"@_ZN18CTerrorMeleeWeapon15SecondaryAttackEv"
+				"windows"	"\x2A\x2A\x2A\x2A\x2A\x2A\x2A\x2A\x2A\x8B\x2A\x85\x2A\x0F\x84\x2A\x2A\x2A\x2A\x8B\x2A\x8B\x90\x2A\x2A\x2A\x2A\x8B\x2A\xFF\x2A\x84\x2A\x0F\x84\x2A\x2A\x2A\x2A\x8B\x2A\xE8\x2A\x2A\x2A\x2A\x84\x2A\x0F"
+/* ? ? ? ? ? ? ? ? ? 8B ? 85 ? 0F 84 ? ? ? ? 8B ? 8B 90 ? ? ? ? 8B ? FF ? 84 ? 0F 84 ? ? ? ? 8B ? E8 ? ? ? ? 84 ? 0F */
+			}
+		}
+	}
+}
