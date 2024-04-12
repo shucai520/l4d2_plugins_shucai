@@ -2,14 +2,13 @@
 #pragma newdecls required
 
 #include <sourcemod>
-#include <dhooks>
 #include <left4dhooks>
 
 #define VERSION "1.0"
 
-float si_stagger_time[33];
-float g_vStart[33][3];
-Handle si_timer[33];
+float si_stagger_time[MAXPLAYERS + 1];
+float g_vStart[MAXPLAYERS + 1][3];
+Handle si_timer[MAXPLAYERS + 1];
 
 bool flag;
 
@@ -34,7 +33,7 @@ public void OnPluginStart()
 
 public void Event_RoundStart(Event event, const char[] name, bool dontBroadcast)
 {
-	for(int i = 1; i <= 32; ++i)
+	for(int i = 1; i <= MaxClients; ++i)
 	{
 		if(si_timer[i])
 		{
@@ -79,6 +78,7 @@ public void L4D_OnCancelStagger_Post(int client)
 	{
 		if(GetGameTime() < si_stagger_time[client])
 		{
+			//PrintToChatAll("L4D_OnCancelStagger 2: 开始计时");
 			if(!si_timer[client])
 				si_timer[client] = CreateTimer(0.1, NextFrame_Set, client, TIMER_REPEAT);
 		}
@@ -92,6 +92,7 @@ Action NextFrame_Set(Handle timer, int client)
 		L4D_StaggerPlayer(client, client, g_vStart[client]);
 		SetEntPropFloat(client, Prop_Send, "m_staggerTimer", si_stagger_time[client], 1);
 
+		//PrintToChatAll("推动 : %N ", client);
 		si_timer[client] = null;
 		return Plugin_Stop;
 	}
