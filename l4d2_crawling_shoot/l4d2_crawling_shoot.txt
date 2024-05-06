@@ -9,15 +9,15 @@
 				"signature" "CTerrorWeapon::CanDeployFor"
 				"linux"
 				{
-					"offset"	"2Ah"
-					"verify"	"\xE8\x71\x63\xF8\xFF\x84"
-					"patch"		"\x90\x90\x90\x90\x90\x30"
+					"offset"	"2Fh"
+					"verify"	"\x84"
+					"patch"		"\x30"
 				}
 				"windows"
 				{
-					"offset"	"38h"
-					"verify"	"\xE8\x13\xAC\xED\xFF\x84"
-					"patch"		"\x90\x90\x90\x90\x90\x30"
+					"offset"	"3Dh"
+					"verify"	"\x84"
+					"patch"		"\x30"
 				}
 			}
 		}
