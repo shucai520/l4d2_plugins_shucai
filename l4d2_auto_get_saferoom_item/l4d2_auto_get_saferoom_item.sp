@@ -94,10 +94,12 @@ int AutoGetItem(const char[] itemName, int[] emptySlot, int start, int end)
 		if(!IsInSaferoomArea(entity))
 			continue;
 
-		int client = emptySlot[start];
-		SDKCall(g_hUseEntity, entity, client, client, Use_On, 0.0);
-		++start;
-		--entity;
+		//item_count > 1
+		do {
+			int client = emptySlot[start++];
+			SDKCall(g_hUseEntity, entity, client, client, Use_On, 0.0);
+		} while(start < end && IsValidEntity(entity));
+		
 	}
 
 	return start;
