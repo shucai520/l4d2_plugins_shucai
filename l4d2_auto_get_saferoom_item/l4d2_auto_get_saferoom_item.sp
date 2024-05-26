@@ -111,7 +111,13 @@ bool IsInSaferoomArea(int entity)
 	GetEntPropVector(entity, Prop_Data, "m_vecOrigin", vOrigin);
 
 	Address nav = view_as<Address>(L4D_GetNearestNavArea(vOrigin));
-	return nav != Address_Null && SDKCall(g_hIsInInitialCheckpoint_NoLandmark, pTerrorNavMesh, nav);
+	return nav != Address_Null && (SDKCall(g_hIsInInitialCheckpoint_NoLandmark, pTerrorNavMesh, nav) || GetSpawnAttributes(nav));
+}
+
+bool GetSpawnAttributes(Address nav)
+{
+	int spawnAttributes = L4D_GetNavArea_SpawnAttributes(nav);
+	return (spawnAttributes & NAV_SPAWN_CHECKPOINT) && (spawnAttributes & NAV_SPAWN_PLAYER_START);
 }
 
 bool IsValidClient(int client)

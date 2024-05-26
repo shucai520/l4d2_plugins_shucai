@@ -41,7 +41,7 @@
 - **修改内容**：
   - 增加同空爆hunter机制。
 
-### survivor_mvp - umlka
+### survivor_mvp - [umlka](https://github.com/umlka/l4d2/tree/main/survivor_mvp)
 
 - **介绍**：
   伤害排行。
