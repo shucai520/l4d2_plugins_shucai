@@ -11,6 +11,7 @@
 | **[l4d2_smoker_slowdown](https://github.com/shucai520/l4d2_plugins_shucai/tree/main/l4d2_smoker_slowdown)** | 被多个Smoker拉, 减速时间不叠加                               |
 | **[l4d2_smoker_weaken](https://github.com/shucai520/l4d2_plugins_shucai/tree/main/l4d2_smoker_weaken)** | 钝器断舌, 被拉近战可推                                       |
 | [**l4d2_auto_get_saferoom_item**](https://github.com/shucai520/l4d2_plugins_shucai/tree/main/l4d2_auto_get_saferoom_item) | 出门自动拿走安全屋药包                                       |
+| [**l4d2_pickup_pistol_manger**](https://github.com/shucai520/l4d2_plugins_shucai/tree/main/l4d2_pickup_pistol_manger) | 切到副武器才能捡手枪(防误捡)                                 |
 
 <hr/>
 
