@@ -87,7 +87,7 @@ public void L4D_OnCancelStagger_Post(int client)
 
 Action NextFrame_Set(Handle timer, int client)
 {
-	if(IsClientInGame(client))
+	if(!IsClientInGame(client))
 	{
 		si_timer[client] = null;
 		return Plugin_Stop;
