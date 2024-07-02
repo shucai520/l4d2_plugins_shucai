@@ -2,7 +2,7 @@
 #pragma newdecls required
 
 #include <sourcemod>
-#include <sdkhooks>
+#include <left4dhooks>
 
 #define VERSION "1.0"
 
@@ -32,10 +32,10 @@ void OnConVarChanged(ConVar convar, const char[] oldValue, const char[] newValue
 	g_bEnable = g_cEnable.BoolValue;
 }
 
-public void OnEntityCreated(int entity, const char[] sClassname)
+public void L4D_MolotovProjectile_Post(int client, int projectile, const float vecPos[3], const float vecAng[3], const float vecVel[3], const float vecRot[3])
 {
-	if(g_bEnable && !strcmp(sClassname, "molotov_projectile"))
+	if(g_bEnable)
 	{
-		SetEntProp(entity, Prop_Send, "m_nSolidType", SOLID_BSP);
+		SetEntProp(projectile, Prop_Send, "m_nSolidType", SOLID_BSP);
 	}
 }
