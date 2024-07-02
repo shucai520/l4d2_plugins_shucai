@@ -87,7 +87,13 @@ public void L4D_OnCancelStagger_Post(int client)
 
 Action NextFrame_Set(Handle timer, int client)
 {
-	if(IsClientInGame(client) && OnGround(client))
+	if(IsClientInGame(client))
+	{
+		si_timer[client] = null;
+		return Plugin_Stop;
+	}
+
+	if(OnGround(client))
 	{
 		L4D_StaggerPlayer(client, client, g_vStart[client]);
 		SetEntPropFloat(client, Prop_Send, "m_staggerTimer", si_stagger_time[client], 1);
