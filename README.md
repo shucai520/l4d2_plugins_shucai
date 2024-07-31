@@ -13,6 +13,7 @@
 | [**l4d2_auto_get_saferoom_item**](https://github.com/shucai520/l4d2_plugins_shucai/tree/main/l4d2_auto_get_saferoom_item) | 出门自动拿走安全屋药包                                       |
 | [**l4d2_pickup_pistol_manger**](https://github.com/shucai520/l4d2_plugins_shucai/tree/main/l4d2_pickup_pistol_manger) | 切到副武器才能捡手枪(防误捡)                                 |
 | **[l4d2_survivor_run_speed](https://github.com/shucai520/l4d2_plugins_shucai/tree/main/l4d2_survivor_run_speed)** | 幸存者普通,瘸腿,1血移速修改                                  |
+| [**l4d2_block_afk_getup_friend_damage**](https://github.com/shucai520/l4d2_plugins_shucai/tree/main/l4d2_block_afk_getup_friend_damage) | 起身闲置不刷新无敌时间                                       |
 
 <hr/>
 
