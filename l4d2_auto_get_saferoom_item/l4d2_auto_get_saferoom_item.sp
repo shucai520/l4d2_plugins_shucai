@@ -5,7 +5,7 @@
 #include <sdktools_functions>
 #include <left4dhooks>
 
-#define VERSION "1.0"
+#define VERSION "1.1"
 
 static int emptySlot3[MAXPLAYERS + 1];
 static int emptySlot4[MAXPLAYERS + 1];
@@ -23,8 +23,8 @@ static const char
 	}
 ;
 
-Handle g_hUseEntity, g_hIsInInitialCheckpoint_NoLandmark;
-Address pTerrorNavMesh;
+Handle g_hUseEntity;//, g_hIsInInitialCheckpoint_NoLandmark;
+//Address pTerrorNavMesh;
 ConVar g_cEnable;
 
 public Plugin myinfo = 
@@ -42,10 +42,10 @@ public void OnPluginStart()
 	Init();
 }
 
-public void OnAllPluginsLoaded()
-{
-	pTerrorNavMesh = L4D_GetPointer(POINTER_NAVMESH);
-}
+// public void OnAllPluginsLoaded()
+// {
+// 	pTerrorNavMesh = L4D_GetPointer(POINTER_NAVMESH);
+// }
 
 public void L4D_OnFirstSurvivorLeftSafeArea_Post(int client)
 {
@@ -110,15 +110,17 @@ bool IsInSaferoomArea(int entity)
 	static float vOrigin[3];
 	GetEntPropVector(entity, Prop_Data, "m_vecOrigin", vOrigin);
 
-	Address nav = view_as<Address>(L4D_GetNearestNavArea(vOrigin));
-	return nav != Address_Null && (SDKCall(g_hIsInInitialCheckpoint_NoLandmark, pTerrorNavMesh, nav) || GetSpawnAttributes(nav));
+	// Address nav = view_as<Address>(L4D_GetNearestNavArea(vOrigin));
+	// return nav != Address_Null && (SDKCall(g_hIsInInitialCheckpoint_NoLandmark, pTerrorNavMesh, nav) || GetSpawnAttributes(nav));
+	//夏洛克fix
+	return L4D_IsPositionInFirstCheckpoint(vOrigin);
 }
 
-bool GetSpawnAttributes(Address nav)
-{
-	int spawnAttributes = L4D_GetNavArea_SpawnAttributes(nav);
-	return (spawnAttributes & NAV_SPAWN_CHECKPOINT) && (spawnAttributes & NAV_SPAWN_PLAYER_START);
-}
+// bool GetSpawnAttributes(Address nav)
+// {
+// 	int spawnAttributes = L4D_GetNavArea_SpawnAttributes(nav);
+// 	return (spawnAttributes & NAV_SPAWN_CHECKPOINT) && (spawnAttributes & NAV_SPAWN_PLAYER_START);
+// }
 
 bool IsValidClient(int client)
 {
@@ -127,18 +129,18 @@ bool IsValidClient(int client)
 
 void Init()
 {
-	GameData hGameData = new GameData("left4dhooks.l4d2");
+	// GameData hGameData = new GameData("left4dhooks.l4d2");
 
-	StartPrepSDKCall(SDKCall_Raw);
-	if(!PrepSDKCall_SetFromConf(hGameData, SDKConf_Signature, "TerrorNavMesh::IsInInitialCheckpoint_NoLandmark"))
-		SetFailState("Failed to find signature: \"TerrorNavMesh::IsInInitialCheckpoint_NoLandmark\"");
-	PrepSDKCall_AddParameter(SDKType_PlainOldData, SDKPass_Plain);
-	PrepSDKCall_SetReturnInfo(SDKType_Bool, SDKPass_Plain);
-	g_hIsInInitialCheckpoint_NoLandmark = EndPrepSDKCall();
-	if(g_hIsInInitialCheckpoint_NoLandmark == null )
-		SetFailState("Failed to create SDKCall: \"TerrorNavMesh::IsInInitialCheckpoint_NoLandmark\"");
+	// StartPrepSDKCall(SDKCall_Raw);
+	// if(!PrepSDKCall_SetFromConf(hGameData, SDKConf_Signature, "TerrorNavMesh::IsInInitialCheckpoint_NoLandmark"))
+	// 	SetFailState("Failed to find signature: \"TerrorNavMesh::IsInInitialCheckpoint_NoLandmark\"");
+	// PrepSDKCall_AddParameter(SDKType_PlainOldData, SDKPass_Plain);
+	// PrepSDKCall_SetReturnInfo(SDKType_Bool, SDKPass_Plain);
+	// g_hIsInInitialCheckpoint_NoLandmark = EndPrepSDKCall();
+	// if(g_hIsInInitialCheckpoint_NoLandmark == null )
+	// 	SetFailState("Failed to create SDKCall: \"TerrorNavMesh::IsInInitialCheckpoint_NoLandmark\"");
 
-	delete hGameData;
+	// delete hGameData;
 
 	//https://github.com/fdxx/l4d2_plugins/blob/main/l4d2_gear_transfer.sp
 	StartPrepSDKCall(SDKCall_Entity);

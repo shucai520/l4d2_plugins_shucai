@@ -1,0 +1,37 @@
+"Games"
+{
+	"left4dead2"
+	{
+		"MemPatches"
+		{
+			"CInferno::CreateFire::Patch"
+			{
+				"signature" "CInferno::CreateFire"
+
+				"linux"
+				{
+					"offset"	"109h"
+					"verify"	"\x30"
+					"patch"		"\x10"
+				}
+				"windows"
+				{
+					"offset"	"CFh"
+					"verify"	"\x30"
+					"patch"		"\x10"
+				}
+			}
+		}
+
+		"Signatures"
+		{
+			"CInferno::CreateFire"
+			{
+				"library"	"server"
+				"linux"		"@_ZN8CInferno10CreateFireERK6VectorS2_PNS_8FireInfoEi"
+				"windows"	"\x55\x8B\xEC\x81\xEC\x9C\x01\x00\x00\xA1\x2A\x2A\x2A\x2A\x33\xC5\x89\x45\xFC\x8B\x45\x0C"
+						/* 55 8B EC 81 EC 9C 01 00 00 A1 ? ? ? ? 33 C5 89 45 FC 8B 45 0C */
+			}
+		}
+	}
+}
